@@ -1,0 +1,9 @@
+# Blocks commits containing credential-shaped strings.
+# This repo's work tree is $HOME, so this file lives at ~/.pre-commit-config.yaml.
+# Enable once per machine:
+#   GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
