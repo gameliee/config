@@ -4,6 +4,6 @@
 
 vim.api.nvim_set_keymap("n", "q", "<Nop>", {
   noremap = true,
-  slient = true,
+  silent = true,
   desc = "Disable recording macro to register q",
 })
