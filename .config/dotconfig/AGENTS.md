@@ -31,29 +31,54 @@ workflow.
 
 ## Replicate
 
-Tracking a file restores its content. These commands restore the wiring that
-no file carries.
+One setup on every machine, so the muscle memory carries — same keys, same
+tools, same behaviour everywhere. A machine may differ, but on purpose.
+
+Tracked files carry the settings themselves. Below is the rest of what should
+be true, with the commands that usually get there. Read the intent, check what
+the machine actually has, close the gap. Re-run this whenever the repo moves.
+
+**Every agent in use should have its herdr integration installed and current.**
+Here that means pi, claude, codex and opencode.
 
 ```sh
-herdr plugin link ~/.config/herdr/plugins/local-nav   # register the tracked local plugin
+herdr integration status
 herdr integration install pi
 herdr integration install claude
 herdr integration install codex
 herdr integration install opencode
+```
+
+**`local-nav` should be linked.** Its files are tracked; the link is not — herdr
+does not discover a plugin directory on its own.
+
+```sh
+herdr plugin list
+herdr plugin link ~/.config/herdr/plugins/local-nav
+```
+
+**pi should have these packages.**
+
+```sh
+pi list
 pi install npm:pi-mcp-adapter
 pi install npm:pi-web-search
 pi install npm:pi-codex-goal
 pi install npm:pi-tool-display
 pi install git:github.com/DietrichGebert/ponytail
 pi install https://github.com/gsanhueza/pi-token-speed
-GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install   # the gitleaks hook
 ```
 
-Nothing under `~/.pi/agent/` is tracked. `extensions/` is written by the
-installers above, the rest is cache or credentials, and `settings.json` is
-rewritten by pi itself — tracking it would carry the model list into a public
-repo every time the settings TUI is used. These are the only values in it that
-differ from pi's own defaults, so re-apply them in `pi config`:
+**gitleaks should run on every commit.** The hook lands in `~/.cfg/hooks/`,
+inside the git directory, which git cannot track.
+
+```sh
+GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install
+```
+
+**pi's own settings stay untracked.** pi rewrites that file, so a tracked copy
+would publish the model list every time the settings TUI is used. These are the
+values that differ from pi's defaults — re-apply in `pi config`:
 
 | setting | value |
 | --- | --- |
