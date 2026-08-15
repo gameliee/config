@@ -37,9 +37,12 @@ no file carries.
 ```sh
 herdr plugin link ~/.config/herdr/plugins/local-nav   # register the tracked local plugin
 for a in pi claude codex opencode; do herdr integration install "$a"; done
-for p in npm:pi-mcp-adapter npm:pi-web-search npm:pi-codex-goal \
-         npm:pi-tool-display git:github.com/DietrichGebert/ponytail \
-         https://github.com/gsanhueza/pi-token-speed; do pi install "$p"; done
+pi install npm:pi-mcp-adapter
+pi install npm:pi-web-search
+pi install npm:pi-codex-goal
+pi install npm:pi-tool-display
+pi install git:github.com/DietrichGebert/ponytail
+pi install https://github.com/gsanhueza/pi-token-speed
 GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install   # the gitleaks hook
 ```
 
