@@ -7,7 +7,7 @@ Everything goes through the `config` alias.
 
 **Can a command regenerate the file?**
 
-- **Yes** → don't track it. Write the command under [Replicate](#replicate).
+- **Yes** → don't track it.
 - **No** (hand-tuned: keybindings, nvim configs, karabiner) → track it.
 
 Machine- or work-specific files (credentials, per-host paths) are never
@@ -28,12 +28,6 @@ config config status.showUntrackedFiles no
 One remote: `origin` = `gameliee/config` (public). Commits are scanned for
 credentials by gitleaks — see `.pre-commit-config.yaml` and the `leak-scan`
 workflow.
-
-## Replicate
-
-- **Claude Code** (`~/.claude/`, ccstatusline) — not tracked at all.
-  Skills install with `bunx skills add <name>`.
-- **nvim plugins** — LazyVim installs on first launch. Nothing to do.
 
 ## Hazards for agents
 
