@@ -37,10 +37,26 @@ no file carries.
 ```sh
 herdr plugin link ~/.config/herdr/plugins/local-nav   # register the tracked local plugin
 for a in pi claude codex opencode; do herdr integration install "$a"; done
-pi install <source>                                   # once per entry in the
-                                                      # packages list in .pi/agent/settings.json
+for p in npm:pi-mcp-adapter npm:pi-web-search npm:pi-codex-goal \
+         npm:pi-tool-display git:github.com/DietrichGebert/ponytail \
+         https://github.com/gsanhueza/pi-token-speed; do pi install "$p"; done
 GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install   # the gitleaks hook
 ```
+
+Nothing under `~/.pi/agent/` is tracked. `extensions/` is written by the
+installers above, the rest is cache or credentials, and `settings.json` is
+rewritten by pi itself — tracking it would carry the model list into a public
+repo every time the settings TUI is used. These are the only values in it that
+differ from pi's own defaults, so re-apply them in `pi config`:
+
+| setting | value |
+| --- | --- |
+| compaction | off (pi defaults to on) |
+| hide thinking block | on |
+| show cache-miss notices | on |
+| collapse changelog | on |
+| editor padding X | 1 |
+| theme | light/dark |
 
 ## Hazards for agents
 
