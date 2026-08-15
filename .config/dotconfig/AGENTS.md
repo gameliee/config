@@ -36,7 +36,10 @@ no file carries.
 
 ```sh
 herdr plugin link ~/.config/herdr/plugins/local-nav   # register the tracked local plugin
-for a in pi claude codex opencode; do herdr integration install "$a"; done
+herdr integration install pi
+herdr integration install claude
+herdr integration install codex
+herdr integration install opencode
 pi install npm:pi-mcp-adapter
 pi install npm:pi-web-search
 pi install npm:pi-codex-goal
