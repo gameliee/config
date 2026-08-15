@@ -1,0 +1,67 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = true
+dark_name = "tokyo-night"
+light_name = "tokyo-night-day"
+
+[keys]
+help = ["prefix+?", "f1"]
+settings = ["prefix+s", "f9"]
+detach = ["prefix+q", "f6"]
+new_tab = ["prefix+c", "f2"]
+rename_tab = ["prefix+shift+t", "f8"]
+previous_tab = ["prefix+p", "f3", "cmd+shift+["]
+next_tab = ["prefix+n", "f4", "cmd+shift+]"]
+goto = ["prefix+g", "f5"]
+last_pane = "alt+backtick"
+copy_mode = ["prefix+[", "f7"]
+switch_workspace = "cmd+1..9"
+focus_agent = "alt+1..9"
+split_vertical = ["prefix+v", "ctrl+f2"]
+split_horizontal = ["prefix+minus", "shift+f2"]
+
+[[keys.command]]
+key = "alt+u"
+type = "plugin_action"
+command = "local-nav.jump-unread"
+description = "Jump to newest unread agent (finished or deferred)"
+
+[[keys.command]]
+key = "ctrl+shift+u"
+type = "plugin_action"
+command = "local-nav.mark-deferred"
+description = "Toggle deferred flag on focused agent"
+
+[[keys.command]]
+key = "cmd+shift+u"
+type = "plugin_action"
+command = "local-nav.jump-unread"
+description = "Jump to newest unread agent (finished or deferred)"
+
+[[keys.command]]
+key = "alt+shift+p"
+type = "plugin_action"
+command = "jt.command-palette.open"
+description = "Command palette (fzf)"
+
+[ui]
+agent_panel_sort = "spaces"
+show_agent_labels_on_pane_borders = true
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent", "$deferred", "state_text"],
+]
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "top-right"
+
+[ui.sound]
+enabled = false
