@@ -36,9 +36,7 @@ no file carries.
 
 ```sh
 herdr plugin link ~/.config/herdr/plugins/local-nav   # register the tracked local plugin
-herdr plugin install JanTvrdik/herdr-command-palette
-herdr integration install pi
-cmux hooks pi install
+for a in pi claude codex opencode; do herdr integration install "$a"; done
 pi install <source>                                   # once per entry in the
                                                       # packages list in .pi/agent/settings.json
 GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install   # the gitleaks hook
