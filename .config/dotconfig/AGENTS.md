@@ -24,13 +24,8 @@ For a per-machine difference, in order:
 1. **An untracked `*.local` file** the config sources (`~/.zshrc.local`). Best —
    `main` stays the single copy of the shared file.
 2. **A conditional inside the tracked file** (`if [[ $(uname) == Darwin ]]`).
-3. **A divergence on the machine branch.** Only when neither works — plenty of
-   software has no include mechanism (karabiner.json, ghostty is partial).
-   Fine, but know the cost: `main` never touched the file, so every later
-   `merge origin/main` silently keeps your version and reports no conflict.
-   Divergences don't announce themselves — check with
-   `config diff HEAD origin/main` after merging, and leave a note here for any
-   that are deliberate.
+3. **A divergence on the machine branch.** When the software has no include
+   mechanism at all (karabiner.json). Record it below.
 
 ### Deliberate divergences
 
@@ -92,10 +87,8 @@ theme light/dark.
   machine — the work-tree is `$HOME`, so it rewrites the home directory. Use
   `git worktree` for branch work. Merging into the current machine branch is
   safe; switching off it is not.
-- **A merge that reports no conflict is not a merge that took everything.** If
-  only the machine branch touched a file since the merge-base, git keeps the
-  machine version without asking. `config diff HEAD origin/main` after every
-  merge.
+- `config diff HEAD origin/main` after merging — divergences don't conflict, so
+  they don't show up.
 - `status.showUntrackedFiles=no` is set, so untracked files never appear in
   `config status`. Intentional. No `.gitignore` needed.
 - Use the `config` alias. Raw `git --git-dir=...` without `--work-tree` fails.
