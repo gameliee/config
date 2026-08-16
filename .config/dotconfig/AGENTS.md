@@ -1,7 +1,8 @@
 # Dotfiles
 
-Bare git repo at `~/.cfg`, work-tree `$HOME`, one branch: `main`.
-Everything goes through the `config` alias.
+Bare git repo at `~/.cfg`, work-tree `$HOME`. `main` is upstream; each machine
+sits on its own branch (`macos`, `linux`). Everything goes through the `config`
+alias.
 
 ## What lives here
 
@@ -13,15 +14,42 @@ Everything goes through the `config` alias.
 Machine- or work-specific files (credentials, per-host paths) are never
 tracked, and get no note either.
 
-One branch for every machine. Per-machine differences go in untracked
-`*.local` files or a conditional inside the config itself — not a branch.
+## Branches
+
+`main` holds what every machine shares. A machine lives on its own branch and
+**merges down** from `main`; shared work goes **up** by PR into `main`.
+
+```sh
+config fetch origin
+config merge origin/main          # on the machine branch — never the reverse direction locally
+config push origin macos
+```
+
+For a per-machine difference, in order:
+
+1. **An untracked `*.local` file** the config sources (`~/.zshrc.local`). Best —
+   `main` stays the single copy of the shared file.
+2. **A conditional inside the tracked file** (`if [[ $(uname) == Darwin ]]`).
+3. **A divergence on the machine branch.** Only when neither works — plenty of
+   software has no include mechanism (karabiner.json, ghostty is partial).
+   Fine, but know the cost: `main` never touched the file, so every later
+   `merge origin/main` silently keeps your version and reports no conflict.
+   Divergences don't announce themselves — check with
+   `config diff HEAD origin/main` after merging, and leave a note here for any
+   that are deliberate.
+
+### Deliberate divergences
+
+| Branch | File | Why |
+|---|---|---|
+| _(none recorded)_ | | |
 
 ## Bootstrap a new machine
 
 ```sh
 git clone --bare https://github.com/gameliee/config.git ~/.cfg
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'   # also add to ~/.zshrc.local (untracked)
-config checkout main              # fresh machine only; refuses if it would overwrite
+config checkout -b <machine> origin/main   # fresh machine only; refuses if it would overwrite
 config config status.showUntrackedFiles no
 ```
 
@@ -68,7 +96,12 @@ theme light/dark.
 
 - **Never `config switch` or `config checkout <branch>`** on an existing
   machine — the work-tree is `$HOME`, so it rewrites the home directory. Use
-  `git worktree` for branch work.
+  `git worktree` for branch work. Merging into the current machine branch is
+  safe; switching off it is not.
+- **A merge that reports no conflict is not a merge that took everything.** If
+  only the machine branch touched a file since the merge-base, git keeps the
+  machine version without asking. `config diff HEAD origin/main` after every
+  merge.
 - `status.showUntrackedFiles=no` is set, so untracked files never appear in
   `config status`. Intentional. No `.gitignore` needed.
 - Use the `config` alias. Raw `git --git-dir=...` without `--work-tree` fails.
