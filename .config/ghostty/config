@@ -1,0 +1,32 @@
+macos-option-as-alt = true
+theme = light:GitHub Light Default,dark:Nvim Dark
+
+# Everything below hands keys to Herdr instead of Ghostty.
+# Verify with `ghostty +list-keybinds` — a wrong key name still validates.
+
+# Cmd+1..9 selects a Herdr workspace.
+# Both spellings are needed: Ghostty binds the translated and physical keys
+# separately, so unbinding one leaves the other live.
+keybind = super+1=unbind
+keybind = super+digit_1=unbind
+keybind = super+2=unbind
+keybind = super+digit_2=unbind
+keybind = super+3=unbind
+keybind = super+digit_3=unbind
+keybind = super+4=unbind
+keybind = super+digit_4=unbind
+keybind = super+5=unbind
+keybind = super+digit_5=unbind
+keybind = super+6=unbind
+keybind = super+digit_6=unbind
+keybind = super+7=unbind
+keybind = super+digit_7=unbind
+keybind = super+8=unbind
+keybind = super+digit_8=unbind
+keybind = super+9=unbind
+keybind = super+digit_9=unbind
+
+# Cmd+Shift+[ / ] is Herdr's previous/next tab.
+# Only the translated spelling exists here — bracket_left/bracket_right unbinds nothing.
+keybind = super+shift+[=unbind
+keybind = super+shift+]=unbind
