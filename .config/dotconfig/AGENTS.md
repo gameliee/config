@@ -35,6 +35,15 @@ One setup on every machine — same keys, same tools, muscle memory carries.
 Differences are deliberate, not drift. Check state, close the gap.
 
 ```sh
+# shell: .zshrc is tracked and expects these. Every block in it is guarded, so
+# a missing one degrades quietly instead of breaking the shell.
+git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto
+# then link ~/.zprezto/runcoms per its README — those runcoms are unmodified
+# templates, which is why they are not tracked
+brew install fzf
+# also expected on PATH: nvm, bun, docker completions, java 11, libpq
+# ~/.zshrc.local and ~/.secrets are per-machine, written by hand, never tracked
+
 # herdr integrations, current on every agent in use here
 herdr integration status
 herdr integration install pi
