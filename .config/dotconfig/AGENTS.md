@@ -31,35 +31,22 @@ workflow.
 
 ## Replicate
 
-One setup on every machine, so the muscle memory carries — same keys, same
-tools, same behaviour everywhere. A machine may differ, but on purpose.
-
-Tracked files carry the settings themselves. Below is the rest of what should
-be true, with the commands that usually get there. Read the intent, check what
-the machine actually has, close the gap. Re-run this whenever the repo moves.
-
-**Every agent in use should have its herdr integration installed and current.**
-Here that means pi, claude, codex and opencode.
+One setup on every machine — same keys, same tools, muscle memory carries.
+Differences are deliberate, not drift. Check state, close the gap.
 
 ```sh
+# herdr integrations, current on every agent in use here
 herdr integration status
 herdr integration install pi
 herdr integration install claude
 herdr integration install codex
 herdr integration install opencode
-```
 
-**`local-nav` should be linked.** Its files are tracked; the link is not — herdr
-does not discover a plugin directory on its own.
-
-```sh
+# local-nav: files are tracked, the link is not
 herdr plugin list
 herdr plugin link ~/.config/herdr/plugins/local-nav
-```
 
-**pi should have these packages.**
-
-```sh
+# pi packages
 pi list
 pi install npm:pi-mcp-adapter
 pi install npm:pi-web-search
@@ -67,27 +54,15 @@ pi install npm:pi-codex-goal
 pi install npm:pi-tool-display
 pi install git:github.com/DietrichGebert/ponytail
 pi install https://github.com/gsanhueza/pi-token-speed
-```
 
-**gitleaks should run on every commit.** The hook lands in `~/.cfg/hooks/`,
-inside the git directory, which git cannot track.
-
-```sh
+# gitleaks: the hook lands in ~/.cfg/hooks, which git cannot track
 GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install
 ```
 
-**pi's own settings stay untracked.** pi rewrites that file, so a tracked copy
-would publish the model list every time the settings TUI is used. These are the
-values that differ from pi's defaults — re-apply in `pi config`:
-
-| setting | value |
-| --- | --- |
-| compaction | off (pi defaults to on) |
-| hide thinking block | on |
-| show cache-miss notices | on |
-| collapse changelog | on |
-| editor padding X | 1 |
-| theme | light/dark |
+pi settings stay untracked — pi rewrites that file and would publish the model
+list with it. Non-default, re-apply in `pi config`: compaction off,
+hideThinkingBlock, showCacheMissNotices, collapseChangelog on, editorPaddingX 1,
+theme light/dark.
 
 ## Hazards for agents
 
