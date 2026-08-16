@@ -19,12 +19,6 @@ tracked, and get no note either.
 `main` holds what every machine shares. A machine lives on its own branch and
 **merges down** from `main`; shared work goes **up** by PR into `main`.
 
-```sh
-config fetch origin
-config merge origin/main          # on the machine branch — never the reverse direction locally
-config push origin macos
-```
-
 For a per-machine difference, in order:
 
 1. **An untracked `*.local` file** the config sources (`~/.zshrc.local`). Best —
