@@ -27,6 +27,5 @@ keybind = super+9=unbind
 keybind = super+digit_9=unbind
 
 # Cmd+Shift+[ / ] is Herdr's previous/next tab.
-# Only the translated spelling exists here — bracket_left/bracket_right unbinds nothing.
-keybind = super+shift+[=unbind
-keybind = super+shift+]=unbind
+keybind = super+shift+bracket_left=unbind
+keybind = super+shift+bracket_right=unbind
