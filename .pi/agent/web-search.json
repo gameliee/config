@@ -1,0 +1,6 @@
+{
+  "not_provider": "google",
+  "not_model": "gemini-flash-latest",
+  "provider": "omnirouter",
+  "model": "cc/claude-sonnet-5"
+}
