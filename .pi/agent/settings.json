@@ -1,0 +1,46 @@
+{
+  "lastChangelogVersion": "0.84.4",
+  "theme": "light/dark",
+  "defaultProvider": "omnirouter",
+  "defaultModel": "cc/claude-opus-5",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": true,
+  "enabledModels": [
+    "omnirouter/cc/claude-fable-5",
+    "omnirouter/cc/claude-sonnet-5",
+    "omnirouter/cu/glm-5.2-high",
+    "omnirouter/cu/glm-5.2-max",
+    "omnirouter/openrouter/deepseek/deepseek-v4-flash-0731",
+    "omnirouter/mantle/openai.gpt-5.6-sol",
+    "omnirouter/mantle/openai.gpt-5.6-terra",
+    "omnirouter/mantle/openai.gpt-5.6-luna",
+    "omnirouter/cc/claude-opus-5",
+    "omnirouter/cu/cursor-grok-4.6-high",
+    "google/gemini-flash-latest",
+    "google/gemini-flash-lite-latest"
+  ],
+  "compaction": {
+    "enabled": false
+  },
+  "editorPaddingX": 1,
+  "showCacheMissNotices": true,
+  "collapseChangelog": true,
+  "enableInstallTelemetry": true,
+  "doubleEscapeAction": "tree",
+  "skills": [
+    "!~/.agents/skills/cmux-workspace"
+  ],
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-search",
+    "npm:pi-codex-goal",
+    "npm:pi-tool-display",
+    "git:github.com/DietrichGebert/ponytail",
+    "https://github.com/gsanhueza/pi-token-speed",
+    "npm:@ff-labs/pi-fff",
+    "npm:@tintinweb/pi-subagents",
+    "git:github.com/obra/superpowers",
+    "npm:@mrclrchtr/supi-cache",
+    "npm:pi-warm-cache"
+  ]
+}
