@@ -63,23 +63,29 @@ herdr integration install opencode
 herdr plugin list
 herdr plugin link ~/.config/herdr/plugins/local-nav
 
-# pi packages
+# pi packages — the list is tracked in .pi/agent/settings.json and pi installs
+# anything missing on next launch. Only needed to add one.
 pi list
-pi install npm:pi-mcp-adapter
-pi install npm:pi-web-search
-pi install npm:pi-codex-goal
-pi install npm:pi-tool-display
-pi install git:github.com/DietrichGebert/ponytail
-pi install https://github.com/gsanhueza/pi-token-speed
+pi install <source>
 
 # gitleaks: the hook lands in ~/.cfg/hooks, which git cannot track
 GIT_DIR="$HOME/.cfg" GIT_WORK_TREE="$HOME" pre-commit install
 ```
 
-pi settings stay untracked — pi rewrites that file and would publish the model
-list with it. Non-default, re-apply in `pi config`: compaction off,
-hideThinkingBlock, showCacheMissNotices, collapseChangelog on, editorPaddingX 1,
-theme light/dark.
+pi config is tracked: `.pi/agent/models.json`, `settings.json` and
+`web-search.json`. They carry no credentials — the gateway is
+`http://localhost:20128/v1` with a literal `no-api-key`. `auth.json`,
+`models-store.json` and `sessions/` stay untracked.
+
+Expect churn: pi rewrites these files as it runs, so fields like
+`lastChangelogVersion` drift on their own. Commit the change you meant, discard
+the rest.
+
+`thinkingLevelMap` is sparse on purpose. `off` `minimal` `low` `medium` `high`
+are offered unless the key is set to `null`; `xhigh` and `max` are hidden unless
+the key names a value. An absent key sends the level name to the provider
+unchanged. Write only the keys that change something — `"low": "low"` does
+nothing.
 
 ## Hazards for agents
 
