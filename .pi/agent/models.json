@@ -1,0 +1,269 @@
+{
+  "providers": {
+    "omnirouter": {
+      "baseUrl": "http://localhost:20128/v1",
+      "api": "openai-completions",
+      "apiKey": "no-api-key",
+      "models": [
+        {
+          "id": "cc/claude-fable-5",
+          "name": "Claude Fable 5",
+          "api": "anthropic-messages",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "cacheControlFormat": "anthropic"
+          },
+          "cost": {
+            "input": 10,
+            "output": 50,
+            "cacheRead": 1,
+            "cacheWrite": 12.5
+          }
+        },
+        {
+          "id": "cc/claude-sonnet-5",
+          "name": "Claude Sonnet 5",
+          "api": "anthropic-messages",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "cacheControlFormat": "anthropic"
+          },
+          "cost": {
+            "input": 2,
+            "output": 10,
+            "cacheRead": 0.2,
+            "cacheWrite": 2.5
+          }
+        },
+        {
+          "id": "cc/claude-opus-4-8",
+          "name": "Claude Opus 4.8",
+          "api": "anthropic-messages",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "cacheControlFormat": "anthropic"
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          }
+        },
+        {
+          "id": "cc/claude-opus-5",
+          "name": "Claude Opus 5",
+          "api": "anthropic-messages",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "cacheControlFormat": "anthropic"
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          }
+        },
+        {
+          "id": "cu/glm-5.2-high",
+          "name": "GLM-5.2 High",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 131072
+        },
+        {
+          "id": "cu/glm-5.2-max",
+          "name": "GLM-5.2 Max",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 131072
+        },
+        {
+          "id": "cu/cursor-grok-4.5-high-fast",
+          "name": "Grok 4.5 High Fast",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 500000,
+          "maxTokens": 500000
+        },
+        {
+          "id": "cu/cursor-grok-4.6-high",
+          "name": "Grok 4.6 High",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 500000,
+          "maxTokens": 500000,
+          "cost": {
+            "input": 2,
+            "output": 6,
+            "cacheRead": 0.5,
+            "cacheWrite": 0,
+            "tiers": [
+              {
+                "inputTokensAbove": 200000,
+                "input": 4,
+                "output": 12,
+                "cacheRead": 1,
+                "cacheWrite": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "openrouter/deepseek/deepseek-v4-flash-0731",
+          "name": "Deepseek V4 Flash",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "medium": null,
+            "max": "max"
+          },
+          "input": [
+            "text"
+          ],
+          "contextWindow": 1048576,
+          "maxTokens": 384000,
+          "cost": {
+            "input": 0.09,
+            "output": 0.18,
+            "cacheRead": 0.018,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "openrouter/z-ai/glm-5.3-flash",
+          "name": "GLM 5.3 Flash",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "medium": null,
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "cost": {
+            "input": 0.075,
+            "output": 0.25,
+            "cacheRead": 0.015,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "mantle/openai.gpt-5.6-terra",
+          "name": "GPT-5.6 Terra (Bedrock Mantle)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 2.2,
+            "output": 13.2,
+            "cacheRead": 0.22,
+            "cacheWrite": 2.75
+          }
+        },
+        {
+          "id": "mantle/openai.gpt-5.6-luna",
+          "name": "GPT-5.6 Luna (Bedrock Mantle)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0.22,
+            "output": 1.32,
+            "cacheRead": 0.022,
+            "cacheWrite": 0.275
+          }
+        },
+        {
+          "id": "mantle/openai.gpt-5.6-sol",
+          "name": "GPT-5.6 Sol (Bedrock Mantle)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 5.5,
+            "output": 33,
+            "cacheRead": 0.55,
+            "cacheWrite": 6.88
+          }
+        },
+        {
+          "id": "claude/claude-sonnet-5",
+          "name": "Sonnet 5 via OmniRoute (web search)",
+          "api": "anthropic-messages",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "cacheControlFormat": "anthropic"
+          },
+          "cost": {
+            "input": 2,
+            "output": 10,
+            "cacheRead": 0.2,
+            "cacheWrite": 2.5
+          }
+        }
+      ]
+    }
+  }
+}
