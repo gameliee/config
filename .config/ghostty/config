@@ -27,5 +27,7 @@ keybind = super+9=unbind
 keybind = super+digit_9=unbind
 
 # Cmd+Shift+[ / ] is Herdr's previous/next tab.
-keybind = super+shift+bracket_left=unbind
-keybind = super+shift+bracket_right=unbind
+# Only the translated spelling works here. `unbind` matches the translated
+# trigger, so bracket_left/bracket_right unbinds nothing and still validates.
+keybind = super+shift+[=unbind
+keybind = super+shift+]=unbind
