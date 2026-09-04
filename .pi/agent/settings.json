@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "0.85.0",
   "theme": "light/dark",
   "defaultProvider": "omnirouter",
   "defaultModel": "cc/claude-opus-5",
