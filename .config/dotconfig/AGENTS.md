@@ -31,7 +31,7 @@ For a per-machine difference, in order:
 
 | Branch | File | Why |
 |---|---|---|
-| _(none recorded)_ | | |
+| `macos` | `.config/karabiner/karabiner.json` | Karabiner-Elements has no include mechanism and rewrites the file itself. `main` holds the full profile; a machine may legitimately differ. Merges silently — see Hazards. |
 
 ## Bootstrap a new machine
 
@@ -93,8 +93,38 @@ nothing.
   machine — the work-tree is `$HOME`, so it rewrites the home directory. Use
   `git worktree` for branch work. Merging into the current machine branch is
   safe; switching off it is not.
+- **Never `config reset --hard` on a machine branch.** Backmerge is always
+  `config merge origin/main`. Reset moves the branch off commits the user never
+  asked to lose, and `--hard` overwrites the work-tree — which is `$HOME`.
+  Suggest it if the machine branch holds nothing worth keeping, then wait for an
+  explicit yes. Same for `push --force`.
+- **Branch before anything destructive**: `config branch <machine>-old-<sha>`.
+  Free, and it turns a mistake into one command to undo.
 - `config diff HEAD origin/main` after merging — divergences don't conflict, so
   they don't show up.
+- **`karabiner.json` merges silently wrong.** It has no include mechanism, so it
+  is a deliberate divergence, and a machine-side deletion beats an untouched
+  `main` with no conflict. After any merge:
+  `grep -c keyboard_fn ~/.config/karabiner/karabiner.json` — 2 is right, 0 means
+  the fn/left_option swap was dropped. Restore with
+  `config checkout origin/main -- .config/karabiner/karabiner.json`.
+- **Clear the merge blockers first.** Git aborts rather than overwrite an
+  untracked or dirty file that an incoming commit adds. On this repo that is
+  `.pi/agent/{models,settings}.json` and, on a machine still using prezto's
+  symlink, `.zshrc`. Copy them somewhere outside `$HOME`'s tracked paths, delete
+  the originals, then merge.
 - `status.showUntrackedFiles=no` is set, so untracked files never appear in
   `config status`. Intentional. No `.gitignore` needed.
 - Use the `config` alias. Raw `git --git-dir=...` without `--work-tree` fails.
+- **Secrets go in `~/.secrets`, machine config in `~/.zshrc.local`.** Both
+  untracked, both sourced at the end of `.zshrc` — `.secrets` under `set -a`, so
+  it needs no `export`. Never inline a credential into a tracked file. When
+  moving lines out of an untracked file into these, move them, don't copy: a
+  second plaintext copy is a second leak.
+- **`~/.zprezto` is a vendored dependency, not ours.** It is a clone of
+  `sorin-ionescu/prezto` with its own remote. Do not track, commit, or revert
+  files under it. `runcoms/zprofile` carries the `brew shellenv` line that puts
+  Homebrew on `PATH` — `/etc/paths` does not — so reverting it costs every brew
+  binary on the next login. `runcoms/zpreztorc` carries the pmodule list.
+  Contrary to the note on #9, those two are *not* byte-identical to prezto's
+  templates on macos; `.zshenv`, `.zlogin` and `.zlogout` are.
