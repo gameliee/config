@@ -5,7 +5,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export PATH="$HOME/.local/bin:$HOME/.docker/bin:$HOME/.bun/bin:/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:/opt/homebrew/opt/libpq/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
@@ -25,13 +25,6 @@ if [[ -x /usr/libexec/java_home ]]; then
 fi
 
 export VISUAL='nvim'
-
-# Docker CLI completions.
-if [[ -d "$HOME/.docker/completions" ]]; then
-  fpath=("$HOME/.docker/completions" $fpath)
-  autoload -Uz compinit
-  compinit
-fi
 
 # Bun completions.
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
