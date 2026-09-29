@@ -2,8 +2,8 @@
   "providers": {
     "omnirouter": {
       "baseUrl": "http://localhost:20128/v1",
+      "apiKey": "$PI_GATEWAY_API_KEY",
       "api": "openai-completions",
-      "apiKey": "no-api-key",
       "models": [
         {
           "id": "cc/claude-fable-5",
