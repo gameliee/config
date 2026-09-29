@@ -29,8 +29,8 @@
           }
         },
         {
-          "id": "cc/claude-sonnet-5",
-          "name": "Claude Sonnet 5",
+          "id": "cc/claude-sonnet-5-5",
+          "name": "Claude Sonnet 5.5",
           "api": "anthropic-messages",
           "reasoning": true,
           "input": [
