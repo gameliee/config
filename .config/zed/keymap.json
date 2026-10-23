@@ -1,0 +1,40 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "space": null,
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "g r": "editor::FindAllReferences",
+      "space r": "vim::PushReplaceWithRegister",
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f r": "projects::OpenRecent",
+      "space /": "pane::DeploySearch",
+      "space ,": "tab_switcher::Toggle",
+      "space `": "pane::AlternateFile",
+      "space e": "workspace::ToggleLeftDock",
+      "space s s": "outline::Toggle",
+      "space s S": "project_symbols::Toggle",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space c f": "editor::Format",
+      "space c d": "editor::Hover",
+      "space x x": "diagnostics::Deploy",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseOtherItems",
+      "space -": "pane::SplitDown",
+      "space |": "pane::SplitRight",
+      "space g g": "git_panel::ToggleFocus",
+      "space f t": "terminal_panel::Toggle",
+      "space q q": "workspace::CloseWindow"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !menu",
+    "bindings": {
+      "space": null,
+      "space r": ["vim::Paste", { "preserve_clipboard": true }]
+    }
+  }
+]
