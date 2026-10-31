@@ -1,0 +1,38 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "omniroute/cc/claude-opus-5-5#high",
+  "agents": {
+    "explorer": {
+      "description": "Fast explorer subagent for codebase exploration",
+      "mode": "subagent",
+      "model": "omniroute/openrouter/deepseek/deepseek-v4.1-flash-1017"
+    }
+  },
+  "mcp": {
+    "servers": {
+      "plane": {
+        "type": "remote",
+        "url": "https://mcp.plane.so/http/mcp"
+      }
+    }
+  },
+  "plugins": [
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "/Users/dat/.config/opencode/omniroute-claude-search",
+    {
+      "package": "@omniroute/opencode-plugin-v2@0.1.0",
+      "options": {
+        "providerId": "omniroute",
+        "baseURL": "http://192.168.1.209:20128",
+        "enrichment": true,
+        "apiFormat": {
+          "allowAnthropic": true
+        }
+      }
+    },
+    "/Users/dat/.config/opencode/omniroute-effort-compat"
+  ],
+  "websearch": {
+    "provider": "omniroute-claude"
+  }
+}
